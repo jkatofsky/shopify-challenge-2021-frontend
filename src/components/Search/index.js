@@ -15,11 +15,10 @@ class Search extends Component {
     changeQuery = (event) => {
         const { typingTimeout, query } = this.state;
         const { onQueryChange } = this.props;
-        const self = this;
         if (typingTimeout) {
             clearTimeout(typingTimeout);
         }
-        self.setState({
+        this.setState({
             query: event.target.value,
             typingTimeout: setTimeout(() => onQueryChange(query), 500)
         });

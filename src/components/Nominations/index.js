@@ -52,6 +52,8 @@ class Nominations extends Component {
         return <>
             {/* TODO: set keys for everything! */}
             <h1>Search results:</h1>
+            {/* TODO: use loading state (set in updateMovies)
+            and render a react-loading-skeleton instead of the search results */}
             {movieSearchResults.map(movie => (
                 <h3 onClick={() => this.nominateMovie(movie)}>
                     {movie.Title}{this.isNominated(movie) && "NOMINATED"}
