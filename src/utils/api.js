@@ -9,10 +9,13 @@ const OMDB_URL = 'http://www.omdbapi.com/';
 export default async function queryOMDB(query) {
     try {
         const response = await fetch(`${OMDB_URL}?apikey=${API_KEY}&s=${query}&type=movie`);
-        const responseData = await response.json();
-        return responseData;
+        const searchResults = await response.json();
+        if (searchResults.Response === 'False') {
+            return [];
+        }
+        return searchResults.Search;
     } catch (err) {
-        console.log(err);
-        return null;
+        console.error(err);
+        return [];
     }
 }
