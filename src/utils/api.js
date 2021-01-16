@@ -4,11 +4,11 @@
 //TODO: if I have extra time, use an env variable? 
 //then, atleast the key will only show in the production code and not in the repo
 const API_KEY = 'ae7fe47b';
-const OMDB_URL = 'http://www.omdbapi.com/';
+const OMDB_URL = 'https://www.omdbapi.com/';
 
 export default async function queryOMDB(query) {
     try {
-        const response = await fetch(`${OMDB_URL}?apikey=${API_KEY}&s=${query}&type=movie`);
+        const response = await fetch(`${OMDB_URL}?apikey=${API_KEY}&type=movie&s=${query}`);
         const searchResults = await response.json();
         if (searchResults.Response === 'False') {
             return [];

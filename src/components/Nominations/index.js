@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { Container, Row, Col } from 'react-grid-system';
 import PropTypes from 'prop-types';
-import queryOMDB from '../../utils/api.js';
 
+import queryOMDB from '../../utils/api.js';
+import MovieCard from './MovieCard.js';
 
 class Nominations extends Component {
 
@@ -9,7 +12,8 @@ class Nominations extends Component {
         super(props);
         this.state = {
             movieSearchResults: [],
-            nominatedMovies: []
+            nominatedMovies: [],
+            loading: false
         }
     }
 
@@ -21,8 +25,13 @@ class Nominations extends Component {
     }
 
     updateMovies = async (movieQuery) => {
+        if (movieQuery.length === 0) {
+            this.setState({ movieSearchResults: [] })
+            return;
+        }
+        this.setState({ loading: true });
         const movieSearchResults = await queryOMDB(movieQuery);
-        this.setState({ movieSearchResults })
+        this.setState({ movieSearchResults, loading: false });
     }
 
     //TODO: this is O(n), where n is the length of nominatedMovies
@@ -32,7 +41,6 @@ class Nominations extends Component {
         return nominatedMovies.map(movie => movie.imdbID).includes(movie.imdbID);
     }
 
-    // TODO: can I use cleaner function syntax for these setStates?
     nominateMovie = (movie) => {
         const { nominatedMovies } = this.state;
         nominatedMovies.push(movie);
@@ -47,25 +55,50 @@ class Nominations extends Component {
 
     render() {
 
-        const { movieSearchResults, nominatedMovies } = this.state;
+        const { movieSearchResults, nominatedMovies, loading } = this.state;
 
-        return <>
-            {/* TODO: set keys for everything! */}
-            <h1>Search results:</h1>
-            {/* TODO: use loading state (set in updateMovies)
-            and render a react-loading-skeleton instead of the search results */}
-            {movieSearchResults.map(movie => (
-                <h3 onClick={() => this.nominateMovie(movie)}>
-                    {movie.Title}{this.isNominated(movie) && "NOMINATED"}
-                </h3>
-            ))}
-            <h1>Nominated movies:</h1>
-            {nominatedMovies.map(movie => (
-                <h3 onClick={() => this.denominateMovie(movie)}>
-                    {movie.Title}
-                </h3>
-            ))}
-        </>;
+        return (
+            <Container className="nominations">
+                <Row>
+                    <Col md={6}>
+                        <h2>Search results</h2>
+                        {loading ?
+                            <Skeleton count={10} height={80} />
+                            :
+                            movieSearchResults.length === 0 ?
+                                <p>No search results yet.</p>
+                                :
+                                movieSearchResults.map(movie => (
+                                    <MovieCard
+                                        key={movie.imdbID}
+                                        movie={movie}
+                                        disabled={this.isNominated(movie) || nominatedMovies.length === 5}
+                                        isSearchResult={true}
+                                        onButtonClick={this.nominateMovie}
+                                    />
+                                ))
+                        }
+                    </Col>
+                    <Col md={6}>
+                        <h2>Nominations</h2>
+                        <h3><span style={{ color: "#95BF46", fontWeight: 'bold' }}>
+                            {5 - nominatedMovies.length}
+                        </span> remaining</h3>
+                        {nominatedMovies.length === 0 ?
+                            <p>No nominations yet.</p>
+                            :
+                            nominatedMovies.map(movie => (
+                                <MovieCard
+                                    key={movie.imdbID}
+                                    movie={movie}
+                                    isSearchResult={false}
+                                    onButtonClick={this.denominateMovie}
+                                />
+                            ))}
+                    </Col>
+                </Row>
+            </Container>
+        );
     }
 }
 

@@ -1,0 +1,26 @@
+header {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 80px;
+    margin-right: 20px;
+}
+
+header h1,
+h2 {
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+}
+
+header h1 {
+    color: #95BF46;
+    font-size: 2.5em;
+}
+
+header h2 {
+    font-style: italic;
+}

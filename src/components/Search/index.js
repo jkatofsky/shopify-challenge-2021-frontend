@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 class Search extends Component {
 
@@ -12,20 +13,20 @@ class Search extends Component {
     }
 
     //inspired by: https://stackoverflow.com/a/42223871/6867216
-    changeQuery = (event) => {
-        const { typingTimeout, query } = this.state;
+    handleQueryChange = (event) => {
+        const { typingTimeout } = this.state;
+        const query = event.target.value;
         const { onQueryChange } = this.props;
         if (typingTimeout) {
             clearTimeout(typingTimeout);
         }
         this.setState({
-            query: event.target.value,
-            typingTimeout: setTimeout(() => onQueryChange(query), 500)
+            query, typingTimeout: setTimeout(() => onQueryChange(query), 300)
         });
     }
 
     render() {
-        return <input type="text" onChange={this.changeQuery} />;
+        return <input placeholder="Search for a movie..." type="text" onChange={this.handleQueryChange} />;
     }
 }
 
