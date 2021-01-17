@@ -23,6 +23,7 @@ class App extends Component {
             <div className="App" >
                 <Header />
                 <Search onQueryChange={movieQuery => this.setState({ movieQuery })} />
+                <hr />
                 <Nominations movieQuery={movieQuery} />
             </div>
         );

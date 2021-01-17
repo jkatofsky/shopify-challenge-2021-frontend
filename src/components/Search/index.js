@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
+import { MdSearch } from "react-icons/md";
 
 class Search extends Component {
 
@@ -26,7 +27,13 @@ class Search extends Component {
     }
 
     render() {
-        return <input placeholder="Search for a movie..." type="text" onChange={this.handleQueryChange} />;
+        return <div className="search-container">
+            <div style={{ right: '5px;' }}>
+                <MdSearch className='icon' size={50} />
+            </div>
+            <input placeholder='Search for a movie (e.g. "The Avengers")'
+                type="text" onChange={this.handleQueryChange} />
+        </div>;
     }
 }
 

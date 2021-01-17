@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Container, Row, Col } from 'react-grid-system';
 import PropTypes from 'prop-types';
+import { MdMovie, MdDoneAll } from "react-icons/md";
 
 import queryOMDB from '../../utils/api.js';
-import MovieCard from './MovieCard.js';
+import MovieCard from '../MovieCard';
+import './style.css';
 
 class Nominations extends Component {
 
@@ -61,12 +63,12 @@ class Nominations extends Component {
             <Container className="nominations">
                 <Row>
                     <Col md={6}>
-                        <h2>Search results</h2>
+                        <h2><MdMovie className="icon" />Search Results</h2>
                         {loading ?
                             <Skeleton count={10} height={80} />
                             :
                             movieSearchResults.length === 0 ?
-                                <p>No search results yet.</p>
+                                <p className="notice">No search results.</p>
                                 :
                                 movieSearchResults.map(movie => (
                                     <MovieCard
@@ -80,12 +82,11 @@ class Nominations extends Component {
                         }
                     </Col>
                     <Col md={6}>
-                        <h2>Nominations</h2>
-                        <h3><span style={{ color: "#95BF46", fontWeight: 'bold' }}>
-                            {5 - nominatedMovies.length}
-                        </span> remaining</h3>
+                        <h2><MdDoneAll className="icon" />Nominations <span style={{ color: "#5E8E3F" }}>
+                            ({nominatedMovies.length}/5)
+                        </span></h2>
                         {nominatedMovies.length === 0 ?
-                            <p>No nominations yet.</p>
+                            <p className="notice">No nominations yet.</p>
                             :
                             nominatedMovies.map(movie => (
                                 <MovieCard

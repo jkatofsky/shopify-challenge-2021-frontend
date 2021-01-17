@@ -1,3 +1,7 @@
+.nominations {
+    margin-top: 15px;
+}
+
 .nominations h2,
 h3 {
     text-align: center;
@@ -5,43 +9,16 @@ h3 {
     margin-block-end: 0.4em;
 }
 
+.nominations h2 {
+    text-decoration: underline;
+}
+
 .nominations h3 {
     font-weight: 400;
 }
 
-.nominations p {
+.notice {
     text-align: center;
     font-style: italic;
     color: grey;
-}
-
-.movie-card {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px lightgray;
-    padding: 5px;
-    margin: 10px 0 10px 0;
-}
-
-.movie-card h4,
-h5 {
-    text-align: center;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-
-}
-
-.movie-card h5 {
-    font-weight: 400;
-}
-
-.movie-card img {
-    height: 90%;
-}
-
-.movie-card button {
-    padding: 10px;
 }

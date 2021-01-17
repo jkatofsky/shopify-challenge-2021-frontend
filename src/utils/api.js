@@ -1,8 +1,7 @@
-//this is (obviously) bad practice, but this is a toy project
-//and it's pretty harmless to leak a key to this particular API
+//it's (obviously) bad practice to include the key here, but this is a toy project
+//and it's harmless to leak a key to this particular API
+//in a real system, the API calls would need to be handled by a backend
 
-//TODO: if I have extra time, use an env variable? 
-//then, atleast the key will only show in the production code and not in the repo
 const API_KEY = 'ae7fe47b';
 const OMDB_URL = 'https://www.omdbapi.com/';
 

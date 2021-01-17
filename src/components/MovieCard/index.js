@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { MdArrowForward, MdArrowBack } from "react-icons/md";
 
 import "./style.css";
 
@@ -18,13 +19,17 @@ class MovieCard extends Component {
                 <h5>{movie.Year}</h5>
             </div>
             <button
+                className={isSearchResult ? "nominate-button" : "unnominate-button"}
                 disabled={disabled}
-                onClick={(e) => {
-                    e.preventDefault();
-                    onButtonClick(movie);
-                }}
+                onClick={() => onButtonClick(movie)}
             >
-                {isSearchResult ? "Nominate" : "De-Nominate"}
+                {!isSearchResult && <MdArrowBack className="icon"/>}
+                {isSearchResult ?
+                    disabled ?
+                        "Nominated" :
+                        "Nominate" :
+                    "Un-Nominate"}
+                {isSearchResult && <MdArrowForward className="icon" />}
             </button>
         </div>;
     }
