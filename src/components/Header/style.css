@@ -1,8 +1,10 @@
 header {
-    padding-top: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #95bf462f;
+    margin-bottom: 20px;
 }
 
 img {
@@ -17,7 +19,7 @@ header h2 {
 }
 
 header h1 {
-    color: #95BF46;
+    color: #5E8E3F;
     font-size: 2em;
 }
 

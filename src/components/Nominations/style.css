@@ -2,19 +2,11 @@
     margin-top: 15px;
 }
 
-.nominations h2,
-h3 {
+.nominations h2 {
     text-align: center;
     margin-block-start: 0.4em;
-    margin-block-end: 0.4em;
-}
-
-.nominations h2 {
+    margin-block-end: 1em;
     text-decoration: underline;
-}
-
-.nominations h3 {
-    font-weight: 400;
 }
 
 .notice {

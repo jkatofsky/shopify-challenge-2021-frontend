@@ -4,9 +4,9 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 20px;
-    box-shadow: 0 5px 10px lightgray;
+    box-shadow: 5px 5px 10px lightgray;
     padding: 5px;
-    margin: 10px 0 10px 0;
+    margin: 10px 0 20px 0;
 }
 
 .movie-card h4 {
