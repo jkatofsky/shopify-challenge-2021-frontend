@@ -16,8 +16,9 @@ class Search extends Component {
     //inspired by: https://stackoverflow.com/a/42223871/6867216
     handleQueryChange = (event) => {
         const { typingTimeout } = this.state;
-        const query = event.target.value;
         const { onQueryChange } = this.props;
+
+        const query = event.target.value;
         if (typingTimeout) {
             clearTimeout(typingTimeout);
         }
@@ -28,10 +29,8 @@ class Search extends Component {
 
     render() {
         return <div className="search-container">
-            <div style={{ right: '5px;' }}>
-                <MdSearch className='icon' size={50} />
-            </div>
-            <input placeholder='Search for a movie (e.g. "The Avengers")'
+            <MdSearch className='icon' size={50} />
+            <input placeholder='Search movies (e.g. "Avengers")'
                 type="text" onChange={this.handleQueryChange} />
         </div>;
     }
