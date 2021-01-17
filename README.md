@@ -15,18 +15,17 @@ Display a banner when the user has 5 nominations.
 
 ## My Added Bells and Whistles
 
+- Mobile-ready.
 - Movie results link to their IMDB page so users can get more information.
 - Movie posters included in results.
-- Mobile-ready.
-- Aesthetics: Shopify colour theme & SVG icons.
+- Aesthetics: Shopify colour theme, SVG icons, snackbar banner.
 
-## TODOs (time permitting)
+## What I wanted to do, If I Had More Time
 
 - More styling improvements.
-  - Add animations?
-  - Refactor to use SCSS?
-  - Refactor to use Material UI?
-- Make there be a banner when 5 movies nominated, as opposed to the current count-down.
-- Remembering of nominations after reload / shareable links (could be two birds w/ one stone if nominated movie IDs are saved as url params).
+  - Adding animations
+  - Refactoring to use SCSS
+  - Possibly, refactoring to use Material UI?
+- Remembering of nominations after reload (via local storage)
+- Allowing for shareable links (via movie IDs in URL parameters - could also be a solution for the above point)
 - Movie pagination.
-- Add a footer with info about me.

@@ -3,6 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Container, Row, Col } from 'react-grid-system';
 import PropTypes from 'prop-types';
 import { MdMovie, MdDoneAll } from "react-icons/md";
+import { withSnackbar } from 'react-simple-snackbar'
 
 import queryOMDB from '../../utils/api.js';
 import MovieCard from '../MovieCard';
@@ -46,6 +47,10 @@ class Nominations extends Component {
     nominateMovie = (movie) => {
         const { nominatedMovies } = this.state;
         nominatedMovies.push(movie);
+        if (nominatedMovies.length === 5) {
+            const { openSnackbar } = this.props
+            openSnackbar("Nomination limit reached!")
+        }
         this.setState({ nominatedMovies });
     }
 
@@ -107,4 +112,15 @@ Nominations.propsTypes = {
     movieQuery: PropTypes.string.isRequired
 }
 
-export default Nominations;
+export default withSnackbar(Nominations, {
+    style: {
+        backgroundColor: '#95bf46',
+        color: 'black',
+        fontSize: '20px',
+        textAlign: 'center',
+        borderRadius: '20px'
+    },
+    closeStyle: {
+        color: 'black'
+    }
+});
