@@ -44,9 +44,9 @@ class Nominations extends Component {
     }
 
     nominateMovie = (movie) => {
-        const { nominatedMovies } = this.state;
+        const { nominatedMovies, maxNominations } = this.state;
         nominatedMovies.push(movie);
-        if (nominatedMovies.length === 5) {
+        if (nominatedMovies.length === maxNominations) {
             const { openSnackbar } = this.props
             openSnackbar("Nomination limit reached!")
         }
