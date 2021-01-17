@@ -3,9 +3,10 @@
 }
 
 .nominations h2 {
+    font-size: larger;
     text-align: center;
-    margin-block-start: 0.4em;
-    margin-block-end: 1em;
+    margin-block-start: 0.6em;
+    margin-block-end: 0.6em;
     text-decoration: underline;
 }
 
@@ -13,4 +14,33 @@
     text-align: center;
     font-style: italic;
     color: grey;
+}
+
+.nomination-col {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    border-radius: 10px;
+    border: 2px solid darkgrey;
+}
+
+.movies-wrapper {
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.clear-nominations-btn {
+    position: absolute;
+    top: 12px;
+    right: 25px;
+    border-width: 0;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.clear-nominations-btn:enabled {
+    cursor: pointer;
 }

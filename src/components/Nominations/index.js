@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Container, Row, Col } from 'react-grid-system';
 import PropTypes from 'prop-types';
-import { MdMovie, MdDoneAll } from "react-icons/md";
+import { MdMovie, MdDoneAll, MdDelete } from "react-icons/md";
 import { withSnackbar } from 'react-simple-snackbar'
 
 import queryOMDB from '../../utils/api.js';
@@ -16,6 +16,7 @@ class Nominations extends Component {
         this.state = {
             movieSearchResults: [],
             nominatedMovies: [],
+            maxNominations: 5,
             loading: false
         }
     }
@@ -60,48 +61,66 @@ class Nominations extends Component {
 
     render() {
 
-        const { movieSearchResults, nominatedMovies, loading } = this.state;
+        const { movieSearchResults, nominatedMovies, maxNominations, loading } = this.state;
 
         return (
             <Container className="nominations">
                 <Row>
-                    <Col md={6}>
-                        <h2><MdMovie className="icon" />Search Results</h2>
-                        {loading ?
-                            <Skeleton count={10} height={80} />
-                            :
-                            movieSearchResults.length === 0 ?
-                                <p className="notice">No search results.</p>
-                                :
-                                movieSearchResults.map(movie => (
-                                    <MovieCard
-                                        key={movie.imdbID}
-                                        movie={movie}
-                                        disabled={this.isNominated(movie) || nominatedMovies.length === 5}
-                                        isSearchResult={true}
-                                        onButtonClick={this.nominateMovie}
-                                    />
-                                ))
-                        }
+
+                    <Col lg={6}>
+                        <div className="nomination-col">
+                            <h2><MdMovie className="icon" />Search Results</h2>
+                            <div className="movies-wrapper">
+                                {loading ?
+                                    <Skeleton count={10} height={80} />
+                                    :
+                                    movieSearchResults.length === 0 ?
+                                        <p className="notice">No search results yet.</p>
+                                        :
+                                        movieSearchResults.map(movie => (
+                                            <MovieCard
+                                                key={movie.imdbID}
+                                                movie={movie}
+                                                disabled={this.isNominated(movie) || nominatedMovies.length === maxNominations}
+                                                isSearchResult={true}
+                                                onButtonClick={this.nominateMovie}
+                                            />
+                                        ))
+                                }
+                            </div>
+                        </div>
                     </Col>
-                    <Col md={6}>
-                        <h2><MdDoneAll className="icon" />Nominations
+
+                    <Col lg={6}>
+                        <div className="nomination-col">
+
+                            <button disabled={nominatedMovies.length === 0}
+                                onClick={() => this.setState({ nominatedMovies: [] })}
+                                className="clear-nominations-btn">
+                                <MdDelete className="icon" size={20} />
+                            </button>
+
+                            <h2><MdDoneAll className="icon" />Nominations&nbsp;
                         <span style={{ color: "#5E8E3F" }}>
-                                ({nominatedMovies.length}/5)
+                                    ({nominatedMovies.length}/{maxNominations})
                         </span>
-                        </h2>
-                        {nominatedMovies.length === 0 ?
-                            <p className="notice">No nominations yet.</p>
-                            :
-                            nominatedMovies.map(movie => (
-                                <MovieCard
-                                    key={movie.imdbID}
-                                    movie={movie}
-                                    isSearchResult={false}
-                                    onButtonClick={this.unnominateMovie}
-                                />
-                            ))}
+                            </h2>
+                            <div className="movies-wrapper">
+                                {nominatedMovies.length === 0 ?
+                                    <p className="notice">No nominations yet.</p>
+                                    :
+                                    nominatedMovies.map(movie => (
+                                        <MovieCard
+                                            key={movie.imdbID}
+                                            movie={movie}
+                                            isSearchResult={false}
+                                            onButtonClick={this.unnominateMovie}
+                                        />
+                                    ))}
+                            </div>
+                        </div>
                     </Col>
+
                 </Row>
             </Container>
         );

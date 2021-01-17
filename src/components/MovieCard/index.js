@@ -11,7 +11,7 @@ class MovieCard extends Component {
 
         return <div className="movie-card" >
             <img src={movie.Poster} alt="" />
-            <div>
+            <div className="movie-title">
                 <a href={`https://www.imdb.com/title/${movie.imdbID}`}
                     target="_blank" rel="noreferrer">
                     <h4>{movie.Title}</h4>
@@ -23,13 +23,10 @@ class MovieCard extends Component {
                 disabled={disabled}
                 onClick={() => onButtonClick(movie)}
             >
-                {!isSearchResult && <MdArrowBack className="icon"/>}
-                {isSearchResult ?
-                    disabled ?
-                        "Nominated" :
-                        "Nominate" :
-                    "Un-Nominate"}
-                {isSearchResult && <MdArrowForward className="icon" />}
+                {isSearchResult
+                    ? <span>Nominate <MdArrowForward className="icon" /></span>
+                    : <span><MdArrowBack className="icon" />Un-Nominate</span>
+                }
             </button>
         </div>;
     }

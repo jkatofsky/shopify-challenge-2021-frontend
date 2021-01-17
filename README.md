@@ -11,12 +11,13 @@ A webpage that can search OMDB for movies, and allow the user to save their favo
 - Updates to the search terms should update the result list
 - Movies in search results can be added and removed from the nomination list.
 - If a search result has already been nominated, disable its nominate button.
-Display a banner when the user has 5 nominations.
+- Display a banner when the user has 5 nominations.
 
 ## My Bells and Whistles
 
-- Use of dynamic grid system to make site mobile-ready.
+- Use of dynamic grid system - the site is mobile-ready!
 - Movie results link to their IMDB page so users can get more information.
+- Clear-all-nominations button.
 - Aesthetics: SVG icons, snackbar banner, loading skeleton, Shopify-inspired colour theme, etc.
 - Movie posters included in results.
 
