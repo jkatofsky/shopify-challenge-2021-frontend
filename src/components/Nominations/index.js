@@ -37,8 +37,6 @@ class Nominations extends Component {
         this.setState({ movieSearchResults, loading: false });
     }
 
-    //TODO: this is O(n), where n is the length of nominatedMovies
-    // a faster way to do this?
     isNominated = (movie) => {
         const { nominatedMovies } = this.state;
         return nominatedMovies.map(movie => movie.imdbID).includes(movie.imdbID);
@@ -54,7 +52,7 @@ class Nominations extends Component {
         this.setState({ nominatedMovies });
     }
 
-    denominateMovie = (movie) => {
+    unnominateMovie = (movie) => {
         const { nominatedMovies } = this.state;
         nominatedMovies.splice(nominatedMovies.indexOf(movie), 1);
         this.setState({ nominatedMovies });
@@ -87,9 +85,11 @@ class Nominations extends Component {
                         }
                     </Col>
                     <Col md={6}>
-                        <h2><MdDoneAll className="icon" />Nominations <span style={{ color: "#5E8E3F" }}>
-                            ({nominatedMovies.length}/5)
-                        </span></h2>
+                        <h2><MdDoneAll className="icon" />Nominations
+                        <span style={{ color: "#5E8E3F" }}>
+                                ({nominatedMovies.length}/5)
+                        </span>
+                        </h2>
                         {nominatedMovies.length === 0 ?
                             <p className="notice">No nominations yet.</p>
                             :
@@ -98,7 +98,7 @@ class Nominations extends Component {
                                     key={movie.imdbID}
                                     movie={movie}
                                     isSearchResult={false}
-                                    onButtonClick={this.denominateMovie}
+                                    onButtonClick={this.unnominateMovie}
                                 />
                             ))}
                     </Col>
@@ -113,12 +113,14 @@ Nominations.propsTypes = {
 }
 
 export default withSnackbar(Nominations, {
+    position: 'top-left',
     style: {
         backgroundColor: '#95bf46',
         color: 'black',
         fontSize: '20px',
         textAlign: 'center',
-        borderRadius: '20px'
+        borderRadius: '20px',
+        fontFamily: 'Roboto'
     },
     closeStyle: {
         color: 'black'

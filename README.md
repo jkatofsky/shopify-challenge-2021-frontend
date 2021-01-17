@@ -1,6 +1,6 @@
 # The Shoppies
 
-My submission for the Shopify 2021 Summer Web Developer Intern Challenge.
+My submission for the Shopify 2021 Summer Web Developer Intern Challenge. Created with [React](https://www.reactjs.org) and an assortment of small component packages.
 
 ## Requirements
 
@@ -13,19 +13,19 @@ A webpage that can search OMDB for movies, and allow the user to save their favo
 - If a search result has already been nominated, disable its nominate button.
 Display a banner when the user has 5 nominations.
 
-## My Added Bells and Whistles
+## My Bells and Whistles
 
-- Mobile-ready.
+- Use of dynamic grid system to make site mobile-ready.
 - Movie results link to their IMDB page so users can get more information.
+- Aesthetics: SVG icons, snackbar banner, loading skeleton, Shopify-inspired colour theme, etc.
 - Movie posters included in results.
-- Aesthetics: Shopify colour theme, SVG icons, snackbar banner.
 
-## What I wanted to do, If I Had More Time
+## Possible Improvements
 
-- More styling improvements.
+- More aesthetic improvements.
   - Adding animations
   - Refactoring to use SCSS
-  - Possibly, refactoring to use Material UI?
-- Remembering of nominations after reload (via local storage)
-- Allowing for shareable links (via movie IDs in URL parameters - could also be a solution for the above point)
+  - Possibly refactoring to use Material UI
+- Remembering nominations after reload (via local storage)
+- Allowing for shareable link (via movie IDs as URL parameters - could also be a solution for the above bullet)
 - Movie pagination.
