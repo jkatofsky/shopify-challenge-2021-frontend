@@ -16,6 +16,7 @@ A webpage that can search OMDB for movies, and allow the user to save their favo
 ## My Bells and Whistles
 
 - Use of dynamic grid system - the site is mobile-ready!
+- Only calls API after user finishes typing to reduce extra requests.
 - Movie results link to their IMDB page so users can get more information.
 - Clear-all-nominations button.
 - Aesthetics: SVG icons, snackbar banner, loading skeleton, Shopify-inspired colour theme, etc.

@@ -26,12 +26,12 @@ class App extends Component {
 
         return (
             <SnackbarProvider>
-                <div className="App" >
+                <>
                     <Header />
                     <Search onQueryChange={movieQuery => this.setState({ movieQuery })} />
                     <Nominations movieQuery={movieQuery} />
                     <Footer />
-                </div>
+                </>
             </SnackbarProvider>
         );
     }

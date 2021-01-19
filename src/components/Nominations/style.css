@@ -35,10 +35,8 @@
     top: 12px;
     right: 25px;
     border-width: 0;
-    font-weight: bold;
     padding: 10px;
     border-radius: 15px;
-    font-family: 'Roboto', sans-serif;
 }
 
 .clear-nominations-btn:enabled {
